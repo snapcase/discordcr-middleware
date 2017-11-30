@@ -14,11 +14,14 @@
 class DiscordMiddleware::Time < Discord::Middleware
   def initialize(@delay : ::Time::Span, &block : Discord::Context ->)
     @block = block
-    @fibers = [] of Fiber
   end
 
   def call(context, done)
-    @fibers.push(spawn { sleep @delay; @block.call(context) })
+    spawn do
+      sleep @delay
+      @block.call(context)
+    end
+
     done.call
   end
 end

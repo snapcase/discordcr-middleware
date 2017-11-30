@@ -11,13 +11,12 @@ describe DiscordMiddleware::Time do
   end
 
   describe "#call" do
-    it "sets up a fiber and calls the next middleware" do
+    it "calls the next middleware right away" do
       mw = DiscordMiddleware::Time.new(5.milliseconds) { |ctx| true }
       msg = message
       context = Discord::Context.new(Client, msg)
 
       mw.call(context, ->{ true }).should be_true
-      mw.@fibers.first.should be_a(Fiber)
     end
 
     it "calls the block after the time has elapsed" do
