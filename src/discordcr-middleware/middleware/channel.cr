@@ -24,7 +24,7 @@ class DiscordMiddleware::Channel < Discord::Middleware
     {% for var in @type.instance_vars %}
       if attr = ch.{{var.id}}
         if value = @{{var.id}}
-          return unless @{{var.id}} == attr
+          return unless value == attr
         end
       end
     {% end %}
