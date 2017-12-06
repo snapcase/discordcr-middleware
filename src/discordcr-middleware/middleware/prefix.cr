@@ -7,7 +7,7 @@
 # end
 # ```
 class DiscordMiddleware::Prefix < Discord::Middleware
-  def initialize(@prefix : String)
+  def initialize(@prefix : String | Char)
   end
 
   def call(context, done)
