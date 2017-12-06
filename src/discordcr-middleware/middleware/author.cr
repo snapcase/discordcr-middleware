@@ -1,6 +1,6 @@
 # Matches the author the message event was raised with based
 # on several different attributes.
-class DiscordMiddleware::Author
+class DiscordMiddleware::Author < Discord::Middleware
   include AttributeMiddleware
 
   def initialize(@id : UInt64? = nil, @username : String? = nil,
