@@ -24,7 +24,7 @@ describe DiscordMiddleware::Error do
         mw = DiscordMiddleware::Error.new { }
         context = Discord::Context.new(Client, message)
 
-        expect_raises do
+        expect_raises(Exception) do
           mw.call(context, ->{ raise "exception" })
         end
       end
